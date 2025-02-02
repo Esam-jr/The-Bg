@@ -1,5 +1,6 @@
-const Post = require("../models/post");
-const mongoose = require("mongoose");
+import Post from "../models/post.js";
+
+import { Types } from "mongoose";
 
 const isValidUrl = (url) => {
   try {
@@ -10,20 +11,20 @@ const isValidUrl = (url) => {
   }
 };
 
-//create a new blog post
-export const CreateBlogPost = async (req, res) => {
+// Create a new blog post
+export async function createPost(req, res) {
   const { title, description, img } = req.body;
-
-  if (!isValidUrl(img)) {
-    return res
-      .status(400)
-      .json({ status: false, message: "Invalid image URL" });
-  }
 
   if (!title || !description || !img) {
     return res
       .status(400)
       .json({ status: false, message: "Please provide all fields" });
+  }
+
+  if (!isValidUrl(img)) {
+    return res
+      .status(400)
+      .json({ status: false, message: "Invalid image URL" });
   }
 
   try {
@@ -34,23 +35,24 @@ export const CreateBlogPost = async (req, res) => {
     console.log("Error in Post Creation:", err.message);
     res.status(500).json({ status: false, message: "Server Error" });
   }
-};
+}
 
-//get All Posts
-export const getAllposts = async (req, res) => {
+// Get All Posts
+export async function getAllPosts(req, res) {
   try {
-    const posts = await Post.find({}).sort({ CreatedAt: -1 });
+    const posts = await Post.find({}).sort({ createdAt: -1 }); // ✅ Fixed 'createdAt'
     res.status(200).json(posts);
   } catch (err) {
     console.log("Error in Fetching Posts:", err.message);
     res.status(500).json({ status: false, message: "Server Error" });
   }
-};
+}
 
-//get a single post
-export const getSinglePost = async (req, res) => {
+// Get a single post
+export async function getPost(req, res) {
   const { id } = req.params;
-  if (!mongoose.Types.ObjectId.isValid(id)) {
+
+  if (!Types.ObjectId.isValid(id)) {
     return res.status(400).json({ status: false, message: "Invalid Post ID" });
   }
 
@@ -64,31 +66,49 @@ export const getSinglePost = async (req, res) => {
     console.log("Error in Fetching Post:", err.message);
     res.status(500).json({ status: false, message: "Server Error" });
   }
-};
+}
 
-//update a post
-export const updatePost = async (req, res) => {
+// Update a post
+export async function updatePost(req, res) {
   const { id } = req.params;
-  const { title, description, img } = req.params;
+  const { title, description, img } = req.body; // ✅ Extract from req.body
+
+  if (!title || !description || !img) {
+    return res
+      .status(400)
+      .json({ status: false, message: "Please provide all fields" });
+  }
+
+  if (!isValidUrl(img)) {
+    return res
+      .status(400)
+      .json({ status: false, message: "Invalid image URL" });
+  }
+
   try {
-    const post = Post.findByIdAndUpdate(
+    const post = await Post.findByIdAndUpdate(
       id,
       { title, description, img },
       { new: true }
     );
+
     if (!post) {
-      res.status(404).json({ status: false, message: "Post not found!" });
+      return res
+        .status(404)
+        .json({ status: false, message: "Post not found!" });
     }
+
     res.status(200).json(post);
   } catch (err) {
     console.log("Error in Updating Post:", err.message);
     res.status(500).json({ status: false, message: "Server Error" });
   }
-};
+}
 
-//delete a post
-export const deletePost = async (req, res) => {
+// Delete a post
+export async function deletePost(req, res) {
   const { id } = req.params;
+
   try {
     const post = await Post.findByIdAndDelete(id);
     if (!post) {
@@ -101,4 +121,4 @@ export const deletePost = async (req, res) => {
     console.log("Error in Deleting Post:", err.message);
     res.status(500).json({ status: false, message: "Server Error" });
   }
-};
+}

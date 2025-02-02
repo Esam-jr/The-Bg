@@ -1,15 +1,15 @@
-const express = require("express");
-const cors = require("cors");
+import express, { json } from "express";
+import cors from "cors";
 
 const app = express();
 
-const authRoute = require("./routes/authRoute");
-const postRoute = require("./routes/postRoute");
+import authRoute from "./routes/authRoute.js";
+import postRoute from "./routes/postRoute.js";
 
 app.use(cors());
-app.use(express.json());
+app.use(json());
 
-const connectDB = require("./config/db");
+import connectDB from "./config/db.js";
 
 connectDB();
 
