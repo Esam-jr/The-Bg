@@ -13,7 +13,7 @@ import connectDB from "./config/db.js";
 
 connectDB();
 
-app.use("/api", authRoute);
+app.use("/api/auth", authRoute);
 app.use("/api", postRoute);
 
 app.get("/", (req, res) => {
