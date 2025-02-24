@@ -1,6 +1,6 @@
-import { User } from "../models/User.js"; // Correct import
-import jwt from "jsonwebtoken"; // Import jwt directly
-import bcrypt from "bcryptjs"; // Import bcrypt directly
+import { User } from "../models/User.js";
+import jwt from "jsonwebtoken";
+import bcrypt from "bcryptjs";
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -8,9 +8,6 @@ dotenv.config();
 export async function register(req, res) {
   const { username, password } = req.body;
   try {
-    // const hashedPassword = await bcrypt.hash(password, 10);
-    // console.log("Hashed Password During Registration:", hashedPassword);
-
     const user = await User.create({ username, password });
 
     res.status(201).json({ message: "Admin registered successfully" });
@@ -26,8 +23,6 @@ export async function login(req, res) {
     const user = await User.findOne({ username });
     if (!user) return res.status(404).json({ error: "User not found" });
 
-    console.log("Stored Hashed Password:", user.password);
-    console.log("Provided Password:", password);
     // Compare the provided password with the hashed password in the database
     const isMatch = await bcrypt.compare(password, user.password);
     const testMatch = await bcrypt.compare(password, user.password);
