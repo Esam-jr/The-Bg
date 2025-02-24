@@ -8,11 +8,10 @@ dotenv.config();
 export async function register(req, res) {
   const { username, password } = req.body;
   try {
-    // Hash the password before saving it to the database
-    const hashedPassword = await bcrypt.hash(password, 10);
-    console.log("Hashed Password During Registration:", hashedPassword);
-    // Create a new user with the hashed password
-    const user = await User.create({ username, password: hashedPassword });
+    // const hashedPassword = await bcrypt.hash(password, 10);
+    // console.log("Hashed Password During Registration:", hashedPassword);
+
+    const user = await User.create({ username, password });
 
     res.status(201).json({ message: "Admin registered successfully" });
   } catch (err) {
