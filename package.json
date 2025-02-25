@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "react-markdown": "^10.0.0",
+    "react-textarea-autosize": "^8.5.7"
+  }
+}
