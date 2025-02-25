@@ -38,7 +38,7 @@ export default function HomePage() {
             </p>
             <a
               href={`/post/${post._id}`}
-              className="text-gray-300 hover:text-white transition"
+              className="text-gray-300 hover:text-white transition italic"
             >
               Read more
             </a>

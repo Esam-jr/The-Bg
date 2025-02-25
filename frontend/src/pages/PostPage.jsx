@@ -18,7 +18,7 @@ export default function PostPage() {
 
   return (
     <div className="bg-gray-800">
-      <div className="max-w-3xl mx-auto p-6 mt-1.5 bg-gray-800 rounded-lg  my-2">
+      <div className="max-w-3xl mx-auto p-6  bg-gray-800 rounded-lg ">
         <img
           src={post.img}
           alt={post.title}

@@ -9,7 +9,7 @@ export default function Footer() {
 
         <div className="flex justify-center space-x-6 mt-3">
           <a
-            href="https://twitter.com"
+            href="https://x.com/Esmael_sabir"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-white transition"
@@ -17,7 +17,7 @@ export default function Footer() {
             Twitter
           </a>
           <a
-            href="https://github.com"
+            href="https://github.com/Esam-jr"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-white transition"
@@ -25,7 +25,7 @@ export default function Footer() {
             GitHub
           </a>
           <a
-            href="https://linkedin.com"
+            href="https://www.linkedin.com/in/esmael-sabir/"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-white transition"
