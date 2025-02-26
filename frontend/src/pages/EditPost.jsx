@@ -34,7 +34,7 @@ export default function EditPost() {
     const token = localStorage.getItem("token");
 
     try {
-      await axios.put(`http://localhost:5000/api/posts/${id}`, form, {
+      await axios.put(`https://the-bg.onrender.com/api/posts/${id}`, form, {
         headers: { Authorization: `Bearer ${token}` },
       });
       navigate("/");

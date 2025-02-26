@@ -9,7 +9,7 @@ export default function PostPage() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/posts/${id}`)
+      .get(`https://the-bg.onrender.com/api/posts/${id}`)
       .then((res) => setPost(res.data))
       .catch((err) => console.error(err));
   }, [id]);

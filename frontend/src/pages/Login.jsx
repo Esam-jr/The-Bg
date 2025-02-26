@@ -12,7 +12,7 @@ const Login = () => {
     console.log("button clicked");
     try {
       const { data } = await axios.post(
-        "http://localhost:5000/api/auth/login",
+        "https://the-bg.onrender.com/api/auth/login",
         {
           username,
           password,

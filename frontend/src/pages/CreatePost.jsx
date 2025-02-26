@@ -20,7 +20,7 @@ const CreatePost = () => {
     e.preventDefault();
     const token = localStorage.getItem("token");
     try {
-      await axios.post("http://localhost:5000/api/posts", form, {
+      await axios.post("https://the-bg.onrender.com/api/posts", form, {
         headers: { Authorization: `Bearer ${token}` },
       });
       navigate("/");

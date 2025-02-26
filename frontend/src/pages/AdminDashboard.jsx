@@ -31,7 +31,7 @@ const AdminDashboard = () => {
     if (!window.confirm("Are you sure you want to delete this post?")) return;
     try {
       const token = localStorage.getItem("token");
-      await axios.delete(`http://localhost:5000/api/posts/${id}`, {
+      await axios.delete(`https://the-bg.onrender.com/api/posts/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setPosts(posts.filter((post) => post._id !== id));

@@ -6,7 +6,7 @@ export default function HomePage() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/posts")
+      .get("https://the-bg.onrender.com/api/posts")
       .then((res) => setPosts(res.data))
       .catch((err) => console.error(err));
   }, []);
